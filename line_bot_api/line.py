@@ -309,7 +309,7 @@ class line:
     def send_msg(self, content="2", data_sticker_pkg_id="1", type="sticker"):
         if type == "sticker":
             sticker_button = self.driver.find_element_by_xpath(
-                "//div[@class = 'mdRGT06Btn']/button[@title = 'Stickers']")
+                "//div[@class = 'mdRGT06Btn']/button[@id = '_chat_room_sticker']")
             time.sleep(self._network_delay)
             sticker_button.click()
             j = self._try_times - 1
