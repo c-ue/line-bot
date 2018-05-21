@@ -286,12 +286,16 @@ class line:
             return False
         return True
 
+    def scrollIntoView(self,element):
+        return self.driver.execute_script("arguments[0].scrollIntoView();", element)
+    
     # TODO:
     #   self._sticker_list get sticker list
     def select_chat(self, chat_name, auto_get_msg=True):
         for i in self._chat_list:
             for j in range(len(i[1])):
                 if i[1][j] == chat_name:
+                    self.scrollIntoView(i[2][j])
                     i[2][j].click()
                     self._item_ = self.driver.find_element_by_xpath("//div[@id='_chat_message_area']")
                     self._str_ = self._item_.get_attribute("innerHTML")
