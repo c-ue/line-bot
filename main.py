@@ -60,6 +60,7 @@ if __name__ == "__main__":
             ret, msg = main(i)
             if not ret:
                 print(msg)
+                input("wait for authorization, please any key")
         except KeyboardInterrupt:
             # TODO:
             #   unknown error process

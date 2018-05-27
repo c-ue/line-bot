@@ -4,6 +4,7 @@
 #   mix too scroll(left side and right side)
 import time
 import pathlib
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -87,8 +88,10 @@ class line:
         options = webdriver.ChromeOptions()
         options.add_extension(Line_Crx_Path)
         options.add_argument(user_data_dir)
+        if os.geteuid() == 0:
+            options.add_argument("--no-sandbox")
         if not show_window:
-            options.add_argument('headless')
+            options.add_argument("--headless")
         self.driver = webdriver.Chrome(executable_path=webdriver_path, chrome_options=options)
         self.driver.implicitly_wait(self._default_implicitly_wait)
         self.driver.get("chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html")
